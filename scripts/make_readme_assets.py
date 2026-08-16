@@ -233,7 +233,90 @@ def make_benchmark() -> str:
     return path
 
 
+# =====================================================================
+# 4) banner (dark / light) — GitHub 仓库标题大图（README 顶部 + Social preview）
+# =====================================================================
+def make_banner(dark: bool = True) -> str:
+    W, H = 1280, 640
+    img = Image.new("RGB", (W, H))
+    d = ImageDraw.Draw(img)
+
+    if dark:
+        bg_top, bg_bot = "#0D1117", "#161B22"
+        line_c, arc_c = "#3D444D", "#58A6FF"
+        title_c, sub_c, tag_c = "#F0F6FC", "#8B949E", "#58A6FF"
+        badge_c, badge_ink = "#3FB950", "#0D1117"
+        label_c, grid_c = "#58A6FF", "#21262D"
+        num_c = "#58A6FF"
+    else:
+        bg_top, bg_bot = "#FFFFFF", "#F6F8FA"
+        line_c, arc_c = "#D0D7DE", "#0969DA"
+        title_c, sub_c, tag_c = "#1F2328", "#57606A", "#0969DA"
+        badge_c, badge_ink = "#1A7F37", "#FFFFFF"
+        label_c, grid_c = "#0969DA", "#EAEEF2"
+        num_c = "#0969DA"
+
+    # vertical gradient background
+    for y in range(H):
+        t = y / (H - 1)
+        r = int(int(bg_top[1:3], 16) * (1 - t) + int(bg_bot[1:3], 16) * t)
+        g = int(int(bg_top[3:5], 16) * (1 - t) + int(bg_bot[3:5], 16) * t)
+        b = int(int(bg_top[5:7], 16) * (1 - t) + int(bg_bot[5:7], 16) * t)
+        d.line([(0, y), (W, y)], fill=(r, g, b))
+
+    # ---- decorative faint grid (right side) ----
+    cx, cy = 930, 330
+    for i in range(-3, 4):
+        d.line([(cx + i * 90, 60), (cx + i * 90, 600)], fill=grid_c, width=1)
+    for j in range(-3, 4):
+        d.line([(650, cy + j * 90), (1240, cy + j * 90)], fill=grid_c, width=1)
+    # decorative circles
+    for rr, w in ((240, 1), (300, 1)):
+        d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], outline=grid_c, width=w)
+
+    # ---- left: brand text ----
+    x0 = 70
+    d.text((x0, 120), "STRUCTURED VISION FOR AI AGENTS", font=font(20, True), fill=label_c)
+    center_text(d, x0 + 270, 165, "vision_kit", font(84, True), title_c)
+    center_text(d, x0 + 265, 290, "Make your AI agent a math tutor.", font(28), sub_c)
+    center_text(d, x0 + 265, 340, "读图 ≠ 读对 · VLM 输出 + 确定性自洽校验", font(24), tag_c)
+    # small capability chips
+    chips = ["维度校验", "几何自洽", "定向补漏重试", "MCP · CLI · 插件"]
+    cw2, ch2 = 150, 40
+    cxs = x0
+    for i, t in enumerate(chips):
+        cx2 = x0 + i * (cw2 + 16)
+        rounded_box(d, (cx2, 410, cx2 + cw2, 410 + ch2), 20, None, line_c, 1)
+        center_text(d, cx2 + cw2 // 2, 410 + 9, t, font(15), sub_c)
+
+    # ---- right: the triangle (180° self-check) ----
+    R = 170
+    import math
+
+    v1 = (cx, cy - R)
+    v2 = (cx - R * math.cos(math.radians(30)), cy + R * math.sin(math.radians(30)))
+    v3 = (cx + R * math.cos(math.radians(30)), cy + R * math.sin(math.radians(30)))
+    d.line([v1, v2, v3, v1], fill=line_c, width=5)
+    # angle arcs at each vertex
+    for vx, vy, a0, a1 in (
+        (v1[0], v1[1] - 18, 205, 335),
+        (v2[0], v2[1] + 6, 315, 80),
+        (v3[0], v3[1] + 6, 100, 225),
+    ):
+        d.arc([vx - 26, vy - 26, vx + 26, vy + 26], start=a0, end=a1, fill=arc_c, width=4)
+    # center 180° label
+    center_text(d, cx, cy - 26, "180°", font(52, True), num_c)
+    # check badge (top-right of triangle)
+    bx, by, br = cx + 190, cy - 180, 52
+    d.ellipse([bx - br, by - br, bx + br, by + br], fill=badge_c)
+    d.line([(bx - 22, by), (bx - 6, by + 16), (bx + 24, by - 16)], fill=badge_ink, width=9)
+
+    path = os.path.join(OUT_DIR, "banner-dark.png" if dark else "banner-light.png")
+    img.save(path)
+    return path
+
+
 if __name__ == "__main__":
     os.makedirs(OUT_DIR, exist_ok=True)
-    for fn in (make_flow, make_demo, make_benchmark):
+    for fn in (make_flow, make_demo, make_benchmark, lambda: make_banner(True), lambda: make_banner(False)):
         print("saved:", fn())

@@ -2,6 +2,12 @@
 
 <div align="center">
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/banner-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/images/banner-light.png">
+  <img alt="vision_kit — structured math-diagram reading with deterministic self-check" src="docs/images/banner-light.png" width="100%">
+</picture>
+
 # 👁️ vision_kit
 
 **Make your AI agent a math tutor.**
