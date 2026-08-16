@@ -1,0 +1,49 @@
+{
+  "type": "向量图",
+  "vectors": {
+    "a1": [
+      2,
+      1
+    ],
+    "a2": [
+      1,
+      3
+    ],
+    "b": [
+      3,
+      4
+    ]
+  },
+  "matrices": {},
+  "figures": {
+    "points": {},
+    "segments": [],
+    "angles": [],
+    "circles": []
+  },
+  "consistent": true,
+  "dom_consistent": true,
+  "note": "图中显示三个向量 a1、a2、b，其坐标分别为 a1=(2,1)、a2=(1,3)、b=(3,4)；向量 b 是从原点指向 (3,4) 的向量，a1 是从原点指向 (2,1) 的向量，a2 是从 (2,1) 指向 (3,4) 的向量（即 a2 = b - a1），图中也标出 a1、a2、b 的箭头及标签",
+  "geo_checks": [
+    {
+      "rule": "vector_sum",
+      "passed": true,
+      "detail": "a1([2, 1]) + a2([1, 3]) = b([3, 4]) OK"
+    }
+  ],
+  "attempts": 1,
+  "diagnostics": {
+    "error_code": "OK",
+    "confidence": "high",
+    "item_confidence": {
+      "a1": "high",
+      "a2": "high",
+      "b": "high"
+    },
+    "retried": false,
+    "attempts": 1,
+    "geo_failures": []
+  },
+  "text": "图形类型：向量图\na1=[2, 1]\na2=[1, 3]\nb=[3, 4]\n图中显示三个向量 a1、a2、b，其坐标分别为 a1=(2,1)、a2=(1,3)、b=(3,4)；向量 b 是从原点指向 (3,4) 的向量，a1 是从原点指向 (2,1) 的向量，a2 是从 (2,1) 指向 (3,4) 的向量（即 a2 = b - a1），图中也标出 a1、a2、b 的箭头及标签",
+  "raw": "{\n  \"type\": \"向量图\",\n  \"vectors\": {\n    \"a1\": [2, 1],\n    \"a2\": [1, 3],\n    \"b\": [3, 4]\n  },\n  \"note\": \"图中显示三个向量 a1、a2、b，其坐标分别为 a1=(2,1)、a2=(1,3)、b=(3,4)；向量 b 是从原点指向 (3,4) 的向量，a1 是从原点指向 (2,1) 的向量，a2 是从 (2,1) 指向 (3,4) 的向量（即 a2 = b - a1），图中也标出 a1、a2、b 的箭头及标签\"\n}"
+}

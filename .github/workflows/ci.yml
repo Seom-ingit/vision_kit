@@ -1,0 +1,56 @@
+name: CI
+
+# 每次 push（含 PR、主干）都跑：安装依赖 → 代码质量 → 单元测试
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+
+jobs:
+  test:
+    name: Lint + Unit tests
+    # tests/test_engine.py 依赖 Pillow 生成临时图片；多个 Python 版本并行验证兼容性
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # 仅安装运行时依赖 + 开发依赖（测试/质量工具）
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      # ruff：静态检查（E/F/W/I 基础 + B 提升 + UP 升级提示），见 pyproject.toml
+      - name: Lint with ruff
+        run: ruff check .
+
+      # pytest：tests/ 下的单元测试（figure / engine 纯逻辑，不发任何网络请求）
+      - name: Test with pytest
+        run: pytest tests/ -v
+
+      # 回归快照（B3）：有 VISION_API_KEY 时与历史快照数值级比对；离线自动跳过
+      - name: Snapshot regression (needs VISION_API_KEY, auto-skips offline)
+        env:
+          VISION_API_KEY: ${{ secrets.VISION_API_KEY }}
+          VISION_API_BASE: ${{ secrets.VISION_API_BASE }}
+          VISION_MODEL: ${{ secrets.VISION_MODEL }}
+        run: python -m pytest tests/test_snapshots.py -q
+
+      # 基准 smoke（B3）：有 VISION_API_KEY 时快速验证主集与对抗集跑通（不写榜单）
+      - name: Benchmark smoke (needs VISION_API_KEY)
+        if: ${{ secrets.VISION_API_KEY != '' }}
+        env:
+          VISION_API_KEY: ${{ secrets.VISION_API_KEY }}
+          VISION_API_BASE: ${{ secrets.VISION_API_BASE }}
+          VISION_MODEL: ${{ secrets.VISION_MODEL }}
+        run: |
+          python benchmark/eval.py --limit 3 --no-report
+          python benchmark/eval.py --subset adv --limit 3 --no-report

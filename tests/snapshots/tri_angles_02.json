@@ -1,0 +1,116 @@
+{
+  "type": "几何图",
+  "vectors": {},
+  "matrices": {},
+  "figures": {
+    "points": {
+      "A": [
+        0,
+        0
+      ],
+      "B": [
+        4,
+        0
+      ],
+      "C": [
+        1,
+        3
+      ]
+    },
+    "segments": [
+      {
+        "endpoints": [
+          "A",
+          "C"
+        ],
+        "length": 3.2
+      },
+      {
+        "endpoints": [
+          "C",
+          "B"
+        ],
+        "length": 4.2
+      },
+      {
+        "endpoints": [
+          "A",
+          "B"
+        ],
+        "length": 4
+      }
+    ],
+    "angles": [
+      {
+        "vertex": "A",
+        "sides": [
+          "AB",
+          "AC"
+        ],
+        "value": 71.6
+      },
+      {
+        "vertex": "B",
+        "sides": [
+          "BA",
+          "BC"
+        ],
+        "value": 45
+      },
+      {
+        "vertex": "C",
+        "sides": [
+          "CA",
+          "CB"
+        ],
+        "value": 63.4
+      }
+    ],
+    "circles": []
+  },
+  "consistent": true,
+  "dom_consistent": true,
+  "note": "点坐标：A(0,0)、B(4,0)、C(1,3)；线段长度：AB=4、AC=3.2、BC=4.2；角度：∠A=71.6°、∠B=45°、∠C=63.4°",
+  "geo_checks": [
+    {
+      "rule": "triangle_sum",
+      "passed": true,
+      "detail": "三角形内角 ∠A=71.6+∠B=45+∠C=63.4 = 180"
+    },
+    {
+      "rule": "segment_length",
+      "passed": true,
+      "detail": "|AC| 坐标距离 3.16228 vs 标注长度 3.2"
+    },
+    {
+      "rule": "segment_length",
+      "passed": true,
+      "detail": "|CB| 坐标距离 4.24264 vs 标注长度 4.2"
+    },
+    {
+      "rule": "segment_length",
+      "passed": true,
+      "detail": "|AB| 坐标距离 4 vs 标注长度 4"
+    },
+    {
+      "rule": "triangle_inequality",
+      "passed": true,
+      "detail": "三边 3.2/4/4.2，最长边 4.2 < 另两边之和 7.2，三角形不等式成立"
+    }
+  ],
+  "attempts": 1,
+  "diagnostics": {
+    "error_code": "OK",
+    "confidence": "high",
+    "item_confidence": {
+      "A": "high",
+      "B": "high",
+      "C": "high"
+    },
+    "retried": false,
+    "attempts": 1,
+    "geo_failures": []
+  },
+  "text": "图形类型：几何图\n点A(0,0)\n点B(4,0)\n点C(1,3)\n线段AC 长=3.2\n线段CB 长=4.2\n线段AB 长=4\n角A(AB/AC)=71.6°\n角B(BA/BC)=45°\n角C(CA/CB)=63.4°\n点坐标：A(0,0)、B(4,0)、C(1,3)；线段长度：AB=4、AC=3.2、BC=4.2；角度：∠A=71.6°、∠B=45°、∠C=63.4°",
+  "raw": "{\n  \"type\": \"几何图\",\n  \"figures\": {\n    \"points\": {\n      \"A\": [0, 0],\n      \"B\": [4, 0],\n      \"C\": [1, 3]\n    },\n    \"segments\": [\n      {\n        \"endpoints\": [\"A\", \"C\"],\n        \"length\": 3.2\n      },\n      {\n        \"endpoints\": [\"C\", \"B\"],\n        \"length\": 4.2\n      },\n      {\n        \"endpoints\": [\"A\", \"B\"],\n        \"length\": 4\n      }\n    ],\n    \"angles\": [\n      {\n        \"vertex\": \"A\",\n        \"sides\": [\"AB\", \"AC\"],\n        \"value\": 71.6\n      },\n      {\n        \"vertex\": \"B\",\n        \"sides\": [\"BA\", \"BC\"],\n        \"value\": 45\n      },\n      {\n        \"vertex\": \"C\",\n        \"sides\": [\"CA\", \"CB\"],\n        \"value\": 63.4\n      }\n    ]\n  },\n  \"vectors\": {},\n  \"matrices\": {},\n  \"note\": \"点坐标：A(0,0)、B(4,0)、C(1,3)；线段长度：AB=4、AC=3.2、BC=4.2；角度：∠A=71.6°、∠B=45°、∠C=63.4°\"\n}"
+}

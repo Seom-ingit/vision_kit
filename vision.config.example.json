@@ -1,0 +1,15 @@
+{
+  "_note": "vision_kit 的 DeepSeek Harness 视觉插件配置模板。【复制本文件为 vision.config.json 后再编辑】。vision.config.json 含明文 API Key，已被根目录 .gitignore 排除，请勿提交到版本库。apiKey 必填；其余为可选默认值。",
+  "_steps": [
+    "1. 复制本文件为同目录下的 vision.config.json（cp vision.config.example.json vision.config.json）",
+    "2. 编辑 vision.config.json，把 apiKey 换成你在阿里云百炼控制台创建的真实 Key（SK- 开头）",
+    "3. 若想在本地加载，把 python 字段改为你机器上 python.exe 的绝对路径",
+    "4. 默认连阿里云百炼 DashScope：apiBase 已指向其 OpenAI 兼容端点，model 用 qwen3-vl-flash"
+  ],
+  "apiKey": "",
+  "apiBase": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "model": "qwen3-vl-flash",
+  "timeout": 60,
+  "maxTokens": 8192,
+  "python": "python"
+}

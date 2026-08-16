@@ -1,0 +1,7 @@
+openai>=1.60
+pillow>=9.0
+mcp>=1.2,<2
+
+# 可选：circuit_detect_addition 插件的 OpenCV 粗解析层（缺失自动降级为纯 VLM）
+# pip install opencv-python-headless
+# opencv-python-headless>=4.8

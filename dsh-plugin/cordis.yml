@@ -1,0 +1,10 @@
+# 文件路径：dsh-plugin/cordis.yml
+# 说明：vision_kit 现在已作为"固定插件"安装到 DSH Web 部署
+# （$DSH_HOME/profiles/web/cordis.patch.yml 的 insert 行，启动自动挂载、重启保留），
+# 不再需要 cordis_define 动态定义。本文件保留为手动 overlay 的等价写法：
+# 如需通过 `dsh web --patch dsh-plugin/cordis.yml` 临时叠加，可直接使用。
+# 注意：name 必须是 file:// URL 形式（原始 Windows 路径 D:\... 会被 Node ESM loader
+# 当作 d: scheme 拒绝；file:// 形式才能被 loader 正确导入），且单引号内反斜杠是字面量。
+- insert:
+    - id: vision_kit
+      name: 'file:///D:/libs/vision_kit/dsh-plugin/vision-kit.dsh.js'

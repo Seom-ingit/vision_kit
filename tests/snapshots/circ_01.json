@@ -1,0 +1,83 @@
+{
+  "type": "几何图",
+  "vectors": {},
+  "matrices": {},
+  "figures": {
+    "points": {
+      "O": [
+        0,
+        0
+      ],
+      "P": [
+        3,
+        0
+      ],
+      "Q": [
+        0,
+        3
+      ]
+    },
+    "segments": [
+      {
+        "endpoints": [
+          "O",
+          "P"
+        ],
+        "length": 3
+      },
+      {
+        "endpoints": [
+          "O",
+          "Q"
+        ],
+        "length": 3
+      }
+    ],
+    "angles": [
+      {
+        "vertex": "O",
+        "sides": [
+          "OP",
+          "OQ"
+        ],
+        "value": 90
+      }
+    ],
+    "circles": [
+      {
+        "center": "O",
+        "radius": 3
+      }
+    ]
+  },
+  "consistent": true,
+  "dom_consistent": true,
+  "note": "图中显示圆心为 O(0,0)，半径 r=3，点 P(3,0)、Q(0,3) 在圆上，OP 与 OQ 垂直，构成四分之一圆弧",
+  "geo_checks": [
+    {
+      "rule": "segment_length",
+      "passed": true,
+      "detail": "|OP| 坐标距离 3 vs 标注长度 3"
+    },
+    {
+      "rule": "segment_length",
+      "passed": true,
+      "detail": "|OQ| 坐标距离 3 vs 标注长度 3"
+    }
+  ],
+  "attempts": 1,
+  "diagnostics": {
+    "error_code": "OK",
+    "confidence": "high",
+    "item_confidence": {
+      "O": "high",
+      "P": "high",
+      "Q": "high"
+    },
+    "retried": false,
+    "attempts": 1,
+    "geo_failures": []
+  },
+  "text": "图形类型：几何图\n点O(0,0)\n点P(3,0)\n点Q(0,3)\n线段OP 长=3\n线段OQ 长=3\n角O(OP/OQ)=90°\n圆O(O) r=3\n图中显示圆心为 O(0,0)，半径 r=3，点 P(3,0)、Q(0,3) 在圆上，OP 与 OQ 垂直，构成四分之一圆弧",
+  "raw": "{\n  \"type\": \"几何图\",\n  \"figures\": {\n    \"points\": {\n      \"O\": [0, 0],\n      \"P\": [3, 0],\n      \"Q\": [0, 3]\n    },\n    \"segments\": [\n      {\n        \"endpoints\": [\"O\", \"P\"],\n        \"length\": 3\n      },\n      {\n        \"endpoints\": [\"O\", \"Q\"],\n        \"length\": 3\n      }\n    ],\n    \"angles\": [\n      {\n        \"vertex\": \"O\",\n        \"sides\": [\"OP\", \"OQ\"],\n        \"value\": 90\n      }\n    ],\n    \"circles\": [\n      {\n        \"center\": \"O\",\n        \"radius\": 3\n      }\n    ]\n  },\n  \"vectors\": {},\n  \"matrices\": {},\n  \"note\": \"图中显示圆心为 O(0,0)，半径 r=3，点 P(3,0)、Q(0,3) 在圆上，OP 与 OQ 垂直，构成四分之一圆弧\"\n}"
+}

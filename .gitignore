@@ -1,0 +1,51 @@
+# 本地视觉凭证（含 API Key），禁止提交到版本库
+vision.config.json
+
+# Python 产物
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+
+# 测试与工具缓存
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.hypothesis/
+.coverage
+.coverage.*
+htmlcov/
+
+# pytest 沙箱临时残留（Windows 受限沙箱生成的零字节临时目录）
+pytest-cache-files-*
+
+# 环境变量与密钥（保留示例文件）
+.env
+.env.*
+!.env.example
+
+# 日志
+*.log
+
+# 编辑器 / IDE / 操作系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# 内部工作文档（发布素材 / 安全检查 / 规划文档），不上传公开仓库
+docs/internal/
+
+# 内部验证/消融实验（含 API Key 引用与运行产物），不上传公开仓库
+verify/
+
+# 依赖目录（.opencode 下另有一份嵌套 .gitignore）
+.opencode/node_modules/
+
+# 临时文件（本地测试输出残留）
+_t.txt
+
+# 测试示意图（本地生成，非发布素材）
+circuit.png

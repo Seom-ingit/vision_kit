@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vision_kit"
+version = "0.3.0"
+description = "OpenAI 兼容视觉模型的结构化识别（向量/矩阵/图元 DOM，维度校验 + 几何自洽 + 分块 + 重试 + 渲染回写）+ opencode MCP 服务器 + 视觉插件 + 基准评测"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+dependencies = [
+    "openai>=1.60",
+    "pillow>=9.0",
+    "mcp>=1.2,<2",
+]
+
+# 可选开发依赖：测试与代码质量工具
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+]
+
+[project.scripts]
+vision-kit-mcp = "vision_kit.mcp_server:main"
+vision-kit-cli = "vision_kit.cli:main"
+
+[tool.setuptools]
+packages = [
+    "vision_kit",
+]
+# package-dir 把仓库根目录映射为包，必须关闭 include-package-data，
+# 否则 wheel 会把 node_modules / vision.config.json（含 API Key）/ 测试图等一并打包
+include-package-data = false
+
+[tool.setuptools.package-dir]
+vision_kit = "."
+
+# ------- 测试（pytest）-------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+# 说明：仓库根目录被 pyproject 映射为包根（vision_kit="."），
+# tests/ 不是传统 Python 子包；pytest 以 rootdir 收集即可，无需 __init__.py。
+# 若在受限沙箱（Windows）下 pytest 的 tmp_path 目录扫描/清理被拒，可加：
+#   addopts += " --basetemp ./.pytest-tmp -p no:cacheprovider -o tmp_path_retention_policy=none"
+
+# ------- 代码质量（ruff）-------
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+# tests/ 允许被测代码风格；检查范围：包 + 测试 + 入口脚本
+extend-exclude = [
+    "dsh-plugin/",       # JS 插件，非 Python
+    ".opencode/",
+    "vision_kit.egg-info/",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = [
+    "E501",  # 行长：允许（虽有 line-length，但模型提示词/注释中文较长，容错）
+]
+
+[tool.ruff.lint.per-file-ignores]
+# 测试文件允许宽松：裸 assert、独变参数等
+"tests/*.py" = ["B011"]

@@ -1,0 +1,43 @@
+{
+  "type": "几何图",
+  "vectors": {},
+  "matrices": {},
+  "figures": {
+    "points": {
+      "A": [
+        -2,
+        2
+      ],
+      "O": [
+        0,
+        0
+      ],
+      "B": [
+        2,
+        2
+      ]
+    },
+    "segments": [],
+    "angles": [],
+    "circles": []
+  },
+  "consistent": true,
+  "dom_consistent": true,
+  "note": "图中点坐标标注为 A(-2,2)、O(0,0)、B(2,2)，抛物线顶点在 O，对称轴为 y 轴，开口向上；无其他数字标注（如长度、角度、半径、向量分量、矩阵元素）",
+  "geo_checks": [],
+  "attempts": 1,
+  "diagnostics": {
+    "error_code": "OK",
+    "confidence": "high",
+    "item_confidence": {
+      "A": "high",
+      "O": "high",
+      "B": "high"
+    },
+    "retried": false,
+    "attempts": 1,
+    "geo_failures": []
+  },
+  "text": "图形类型：几何图\n点A(-2,2)\n点O(0,0)\n点B(2,2)\n图中点坐标标注为 A(-2,2)、O(0,0)、B(2,2)，抛物线顶点在 O，对称轴为 y 轴，开口向上；无其他数字标注（如长度、角度、半径、向量分量、矩阵元素）",
+  "raw": "{\n  \"type\": \"几何图\",\n  \"figures\": {\n    \"points\": {\n      \"A\": [-2, 2],\n      \"O\": [0, 0],\n      \"B\": [2, 2]\n    },\n    \"segments\": [],\n    \"angles\": [],\n    \"circles\": []\n  },\n  \"vectors\": {},\n  \"matrices\": {},\n  \"note\": \"图中点坐标标注为 A(-2,2)、O(0,0)、B(2,2)，抛物线顶点在 O，对称轴为 y 轴，开口向上；无其他数字标注（如长度、角度、半径、向量分量、矩阵元素）\"\n}"
+}

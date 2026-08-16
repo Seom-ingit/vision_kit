@@ -1,0 +1,46 @@
+{
+  "type": "矩阵图",
+  "vectors": {},
+  "matrices": {
+    "B": [
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        4,
+        5,
+        6
+      ],
+      [
+        7,
+        8,
+        9
+      ]
+    ]
+  },
+  "figures": {
+    "points": {},
+    "segments": [],
+    "angles": [],
+    "circles": []
+  },
+  "consistent": true,
+  "dom_consistent": true,
+  "note": "B 是 3x3 矩阵，元素按行排列为第一行 [1, 2, 3]，第二行 [4, 5, 6]，第三行 [7, 8, 9]",
+  "geo_checks": [],
+  "attempts": 1,
+  "diagnostics": {
+    "error_code": "OK",
+    "confidence": "high",
+    "item_confidence": {
+      "B": "high"
+    },
+    "retried": false,
+    "attempts": 1,
+    "geo_failures": []
+  },
+  "text": "图形类型：矩阵图\nB=[[1, 2, 3], [4, 5, 6], [7, 8, 9]]\nB 是 3x3 矩阵，元素按行排列为第一行 [1, 2, 3]，第二行 [4, 5, 6]，第三行 [7, 8, 9]",
+  "raw": "{\n  \"type\": \"矩阵图\",\n  \"matrices\": {\n    \"B\": [\n      [1, 2, 3],\n      [4, 5, 6],\n      [7, 8, 9]\n    ]\n  },\n  \"note\": \"B 是 3x3 矩阵，元素按行排列为第一行 [1, 2, 3]，第二行 [4, 5, 6]，第三行 [7, 8, 9]\"\n}"
+}

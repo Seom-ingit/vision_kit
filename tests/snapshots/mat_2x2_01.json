@@ -1,0 +1,39 @@
+{
+  "type": "矩阵图",
+  "vectors": {},
+  "matrices": {
+    "A": [
+      [
+        2,
+        -1
+      ],
+      [
+        1,
+        4
+      ]
+    ]
+  },
+  "figures": {
+    "points": {},
+    "segments": [],
+    "angles": [],
+    "circles": []
+  },
+  "consistent": true,
+  "dom_consistent": true,
+  "note": "A 是 2x2 矩阵，元素为第一行 [2, -1]，第二行 [1, 4]",
+  "geo_checks": [],
+  "attempts": 1,
+  "diagnostics": {
+    "error_code": "OK",
+    "confidence": "high",
+    "item_confidence": {
+      "A": "high"
+    },
+    "retried": false,
+    "attempts": 1,
+    "geo_failures": []
+  },
+  "text": "图形类型：矩阵图\nA=[[2, -1], [1, 4]]\nA 是 2x2 矩阵，元素为第一行 [2, -1]，第二行 [1, 4]",
+  "raw": "{\n  \"type\": \"矩阵图\",\n  \"matrices\": {\n    \"A\": [\n      [2, -1],\n      [1, 4]\n    ]\n  },\n  \"note\": \"A 是 2x2 矩阵，元素为第一行 [2, -1]，第二行 [1, 4]\"\n}"
+}
